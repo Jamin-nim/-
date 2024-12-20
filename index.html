@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jieun Lee</title>
-  
-  <link href="http://kimjisun.net/assets/css/fonts.css" rel="stylesheet">
-  <link href="./style.css" rel="stylesheet">
-  
+  <link href="css/fonts.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
   <style>
+    /* 기본적으로 한글 텍스트 숨기기 */
     .lang-ko {
       display: none;
     }
 
+    /* 영어 텍스트에 커서를 올리면 한글로 변경 */
     .lang-en:hover {
       display: none;
     }
@@ -21,11 +22,11 @@
       display: block;
     }
 
-    .project-content figure:hover ~ .lang-en {
+    figure:hover ~ .lang-en {
       display: none;
     }
 
-    .project-content figure:hover ~ .lang-ko {
+    figure:hover ~ .lang-ko {
       display: block;
     }
 
@@ -50,20 +51,18 @@
     }
 
     #random-images {
-      display: none;
+      margin-top: 20px;
+      text-align: center;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 500px;
-      height: 500px;
-      overflow: hidden;
     }
 
     #random-images img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
       border-radius: 0px;
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
       transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
@@ -76,6 +75,79 @@
       transform: scale(1.05);
       filter: blur(0);
     }
+
+    /* 세모 표시 완전 제거 */
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    details summary {
+      list-style: none;
+    }
+
+    /* 어바웃, 프로젝트 텍스트 위치 수정 */
+    .section-content p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-left: 15px;
+      margin-right: 15px;
+      text-align: justify;
+    }
+
+    /* 프로젝트 이미지 규격 맞추기 */
+    .project-content figure img {
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      border-radius: 0px; /* 각진 네모 스타일 */
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin: 0 auto;
+    }
+
+    .project-content figure img:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 프로젝트 이미지 위치 조정 */
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .project-content ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .project-content li {
+      font-size: 1.2em;
+    }
+
+    .project-content li a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .project-content li a:hover {
+      text-decoration: underline;
+    }
+
+    /* 오른쪽으로 텍스트 밀기 효과 */
+    .project-content.open {
+      transform: translateX(300px);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* 텍스트가 이미지의 가로를 벗어나지 않도록 */
+    .project-content .project-description {
+      max-width: 100%;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
@@ -100,13 +172,12 @@
           <summary>wander, 2024.</summary>
           <div class="project-content">
             <figure>
-              <!-- Wrap the image with a link to the project -->
               <a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">
-                <img src="이지은 3.jpg" alt="wander, 2024.">
+                <img src="이지은 3.jpg" alt="wander, 2024." id="project-image">
               </a>
             </figure>
-            <p class="lang-en">The increase in international migration is one of the key functions of nations in the 21st century. Through movement and intercultural exchanges, heterogeneous cultures meet, giving rise to cultural hybridity. The artist speaks about the border-like existence they experienced through their Vietnamese mother. This presence visualizes the gaps where these border-crossing beings reside, while also clashing their perspectives. The work involves breaking down boundaries and rethinking them through the stories that begin with immigrants' narratives of their hometowns, as shared in interviews.</p>
-            <p class="lang-ko">국제 이주의 증가는 21세기 국가의 중요한 기능 중 하나이다. 이동과 인종 간의 교류로 이질적 문화들이 만나 문화 혼종성이 발생하는데, 작가는 베트남인 어머니를 두면서 경험한 경계적 존재들에 대해서 이야기한다. 그 모습은 경계적 존재들이 머물러있는 틈을 가시화하면서 그들의 입장을 충돌시킨다. 인터뷰한 이주민에게 고향으로 시작된 이야기들을 통해 경계를 허물고 그것들을 재사유하는 작업이다.</p>
+            <p class="lang-en project-description" id="project-description-en">The increase in international migration is one of the key functions of nations in the 21st century. Through movement and intercultural exchanges, heterogeneous cultures meet, giving rise to cultural hybridity. The artist speaks about the border-like existence they experienced through their Vietnamese mother. This presence visualizes the gaps where these border-crossing beings reside, while also clashing their perspectives. The work involves breaking down boundaries and rethinking them through the stories that begin with immigrants' narratives of their hometowns, as shared in interviews.</p>
+            <p class="lang-ko project-description" id="project-description-ko" style="display: none;">국제 이주의 증가는 21세기 국가의 중요한 기능 중 하나이다. 이동과 인종 간의 교류로 이질적 문화들이 만나 문화 혼종성이 발생하는데, 작가는 베트남인 어머니를 두면서 경험한 경계적 존재들에 대해서 이야기한다. 그 모습은 경계적 존재들이 머물러있는 틈을 가시화하면서 그들의 입장을 충돌시킨다. 인터뷰한 이주민에게 고향으로 시작된 이야기들을 통해 경계를 허물고 그것들을 재사유하는 작업이다.</p>
             <ul>
               <li><a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">wander, 2024.</a></li>
             </ul>
@@ -122,53 +193,78 @@
 
   <script>
     const images = [
-      '1.JPG', '2.jpeg', '6.jpeg', '이지은 4.jpg', '5.jpeg', '4.jpeg'
+      '1.JPG',
+      '2.jpeg',
+      '6.jpeg',
+      '이지은 4.jpg',
+      '5.jpeg',
+      '4.jpeg'
     ];
 
     function displayRandomImage() {
       const container = document.getElementById('image-container');
       const randomIndex = Math.floor(Math.random() * images.length);
       const imageSrc = images[randomIndex];
-
-      const imgElement = document.createElement('img');
-      imgElement.src = imageSrc;
-      imgElement.alt = 'Random Image';
-
-      container.innerHTML = '';
-      container.appendChild(imgElement);
+      container.innerHTML = `<img src="${imageSrc}" alt="Random Image">`;
     }
 
-    window.onload = function () {
-      const randomImagesDiv = document.getElementById('random-images');
-      randomImagesDiv.style.display = 'block';
-      displayRandomImage();
-    };
+    // 페이지 로드 시 랜덤 이미지 표시
+    window.addEventListener('DOMContentLoaded', displayRandomImage);
 
     document.getElementById('title').addEventListener('click', function () {
       const randomImagesDiv = document.getElementById('random-images');
-      const aboutDetails = document.getElementById('about');
-      const projectsDetails = document.getElementById('projects');
-
-      aboutDetails.removeAttribute('open');
-      projectsDetails.removeAttribute('open');
       randomImagesDiv.style.display = 'block';
       displayRandomImage();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     const aboutDetails = document.getElementById('about');
+    aboutDetails.addEventListener('click', function () {
+      document.getElementById('random-images').style.display = 'none';
+    });
+
     const projectsDetails = document.getElementById('projects');
+    projectsDetails.addEventListener('click', function () {
+      document.getElementById('random-images').style.display = 'none';
+    });
 
     aboutDetails.addEventListener('click', function () {
-      const randomImagesDiv = document.getElementById('random-images');
-      randomImagesDiv.style.display = 'none';
-      projectsDetails.removeAttribute('open');
+      if (projectsDetails.open) {
+        projectsDetails.removeAttribute('open');
+      }
     });
 
     projectsDetails.addEventListener('click', function () {
-      const randomImagesDiv = document.getElementById('random-images');
-      randomImagesDiv.style.display = 'none';
+      if (aboutDetails.open) {
+        aboutDetails.removeAttribute('open');
+      }
+    });
+
+    document.getElementById('title').addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       aboutDetails.removeAttribute('open');
+      projectsDetails.removeAttribute('open');
+    });
+
+    // 이미지에 커서 올릴 때 텍스트 전환
+    document.getElementById('project-image').addEventListener('mouseover', function () {
+      const langEn = document.getElementById('project-description-en');
+      const langKo = document.getElementById('project-description-ko');
+      langEn.style.display = 'none';
+      langKo.style.display = 'block';
+    });
+
+    document.getElementById('project-image').addEventListener('mouseout', function () {
+      const langEn = document.getElementById('project-description-en');
+      const langKo = document.getElementById('project-description-ko');
+      langEn.style.display = 'block';
+      langKo.style.display = 'none';
+    });
+
+    // 프로젝트 클릭 시 오른쪽으로 텍스트 밀리기
+    const projectContent = document.querySelector('.project-content');
+    projectContent.addEventListener('click', function () {
+      projectContent.classList.toggle('open');
     });
   </script>
 </body>
